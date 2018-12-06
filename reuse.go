@@ -82,6 +82,9 @@ func getTransport(o Options) *http.Transport {
 			ClientSessionCache: tls.NewLRUClientSessionCache(25),
 		},
 	}
+	if o.Proxy.url != nil {
+		tr.Proxy = http.ProxyURL(o.Proxy.url)
+	}
 	return tr
 }
 

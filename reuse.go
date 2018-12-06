@@ -10,6 +10,7 @@ import (
 	"log"
 	"net/http"
 	"net/http/httptrace"
+	"net/url"
 	"os"
 	"strings"
 	"time"
@@ -81,6 +82,10 @@ func getTransport(o Options) *http.Transport {
 			InsecureSkipVerify: o.Insecure,
 			ClientSessionCache: tls.NewLRUClientSessionCache(25),
 		},
+	}
+	if len(o.Proxy) > 0 {
+		proxyUrl, _ := url.Parse(o.Proxy)
+		tr.Proxy = http.ProxyURL(proxyUrl)
 	}
 	return tr
 }

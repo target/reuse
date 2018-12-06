@@ -34,6 +34,7 @@ type Options struct {
 	PrintVersion bool          `short:"V" long:"version" description:"Print Version number and exit"`
 	Data         string        `short:"d" long:"data" description:"Data to send"`
 	Method       string        `short:"X" long:"request" description:"HTTP method" default:"GET"`
+	Proxy        string        `short:"x" long:"proxy" description:"HTTP proxy to use. Must include http://"`
 	Wait         time.Duration `short:"w" long:"wait" description:"Time to wait between connections" default:"5s"`
 	Headers      []Header      `short:"H" long:"header" description:"Additional Header"`
 	Args         struct {
